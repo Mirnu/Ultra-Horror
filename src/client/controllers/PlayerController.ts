@@ -1,5 +1,6 @@
 import { Components } from "@flamework/components";
-import { Service, OnStart, Controller } from "@flamework/core";
+import { OnStart, Controller } from "@flamework/core";
+import { MovementComponent } from "client/components/MovementComponent";
 import { LocalPlayer } from "client/utils";
 
 @Controller({})
