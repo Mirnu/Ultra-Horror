@@ -4,7 +4,7 @@ import { EnemyComponent } from "./EnemyComponent";
 import { ReplicatedStorage } from "@rbxts/services";
 
 @Component({
-	tag: "Chipi",
+	//tag: "Chipi",
 })
 export class ChipiComponent extends EnemyComponent<Chipi> implements OnStart {
 	onStart(): void {

@@ -4,17 +4,8 @@ import { PathfindingService, Players, RunService, Workspace } from "@rbxts/servi
 import { GetCharacter, GetCharacterCFrame } from "shared/Utils";
 
 interface Attributes {}
-
-function create(pos: Vector3) {
-	const part = new Instance("Part");
-	part.Anchored = true;
-	part.Position = pos;
-	part.CanCollide = false;
-	part.Parent = Workspace;
-}
-
 @Component({
-	tag: "Enemy",
+	//tag: "Enemy",
 })
 export class EnemyComponent<I extends Enemy> extends BaseComponent<Attributes, I> implements OnStart {
 	onStart(): void {
@@ -34,7 +25,6 @@ export class EnemyComponent<I extends Enemy> extends BaseComponent<Attributes, I
 		const waypoints = path.GetWaypoints();
 		if (waypoints.size() > 0) {
 			waypoints.forEach((waypoint) => {
-				create(waypoint.Position);
 				this.instance.Nextbot.MoveTo(waypoint.Position);
 				this.instance.Nextbot.MoveToFinished.Wait();
 			});
