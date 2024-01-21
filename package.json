@@ -30,6 +30,7 @@
     "@flamework/networking": "^1.0.1",
     "@rbxts/maid": "^1.1.0",
     "@rbxts/services": "^1.5.1",
-    "@rbxts/signal": "^1.1.1"
+    "@rbxts/signal": "^1.1.1",
+    "@rbxts/zone-plus": "^3.2.0"
   }
 }

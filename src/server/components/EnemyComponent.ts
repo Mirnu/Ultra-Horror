@@ -1,11 +1,11 @@
 import { OnStart } from "@flamework/core";
 import { Component, BaseComponent } from "@flamework/components";
-import { PathfindingService, Players, RunService, Workspace } from "@rbxts/services";
+import { PathfindingService, Players } from "@rbxts/services";
 import { GetCharacter, GetCharacterCFrame } from "shared/Utils";
 
 interface Attributes {}
 @Component({
-	//tag: "Enemy",
+	tag: "Enemy",
 })
 export class EnemyComponent<I extends Enemy> extends BaseComponent<Attributes, I> implements OnStart {
 	onStart(): void {
@@ -20,7 +20,7 @@ export class EnemyComponent<I extends Enemy> extends BaseComponent<Attributes, I
 	}
 
 	private Attack(destitanation: CFrame) {
-		const path = PathfindingService.CreatePath();
+		const path = PathfindingService.CreatePath({ Costs: { SafeZone: math.huge } });
 		path.ComputeAsync(this.instance.HumanoidRootPart.CFrame.Position, destitanation.Position);
 		const waypoints = path.GetWaypoints();
 		if (waypoints.size() > 0) {
@@ -28,8 +28,6 @@ export class EnemyComponent<I extends Enemy> extends BaseComponent<Attributes, I
 				this.instance.Nextbot.MoveTo(waypoint.Position);
 				this.instance.Nextbot.MoveToFinished.Wait();
 			});
-		} else {
-			this.instance.Nextbot.MoveTo(destitanation.Position);
 		}
 	}
 

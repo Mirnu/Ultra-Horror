@@ -1,12 +1,11 @@
 import { UserInputService } from "@rbxts/services";
 import { State } from "client/StateMachine/State";
+import { LocalPlayer } from "client/utils";
+import { GetCharacter } from "shared/Utils";
 
 export class WalkingState extends State {
-	private character = this.playerController.Character;
-	private humanoid = this.character.Humanoid;
-
 	public Enter() {
-		this.humanoid.WalkSpeed = 25;
+		GetCharacter(LocalPlayer).Humanoid.WalkSpeed = 25;
 
 		this.maid.GiveTask(
 			UserInputService.InputBegan.Connect((input) => {

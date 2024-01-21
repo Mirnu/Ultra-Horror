@@ -1,18 +1,17 @@
 import { UserInputService } from "@rbxts/services";
 import { State } from "client/StateMachine/State";
+import { LocalPlayer } from "client/utils";
+import { GetCharacter } from "shared/Utils";
 
 const maxFatigue = 5;
 
 export class RunningState extends State {
-	private character = this.playerController.Character;
-	private humanoid = this.character.Humanoid;
-
 	private fatigue = maxFatigue;
 
 	public Enter() {
 		if (this.fatigue <= 0) return false;
 		this.maid.DoCleaning();
-		this.humanoid.WalkSpeed = 40;
+		GetCharacter(LocalPlayer).Humanoid.WalkSpeed = 40;
 
 		this.maid.GiveTask(
 			UserInputService.InputEnded.Connect((input) => {
