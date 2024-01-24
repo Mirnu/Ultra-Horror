@@ -14,7 +14,7 @@ export class BackRooms {
 					if (math.random(1, 5) === 1) this.createLight(x * 10, y * 10);
 					if (x > -4 && x < 4 && y > -4 && y < 4) continue;
 					const noise = math.noise(seed, x / 2, y / 2);
-					if (noise > 0) {
+					if (noise > 0.05) {
 						this.createWall(x, y);
 					}
 				}
@@ -65,7 +65,7 @@ export class BackRooms {
 
 		const light = new Instance("SpotLight");
 		light.Angle = 120;
-		light.Brightness = 2;
+		light.Brightness = 1;
 		light.Range = 30;
 		light.Shadows = true;
 		light.Face = Enum.NormalId.Bottom;

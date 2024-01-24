@@ -1,5 +1,4 @@
 interface Enemy extends Model {
-	Nextbot: Humanoid;
 	HumanoidRootPart: BasePart;
 }
 
