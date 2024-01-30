@@ -3,32 +3,25 @@ import { Frame } from "../../../ui/frame";
 import { Text } from "../../../ui/text";
 import { fonts } from "../../../shared/constants/font";
 import { useRem } from "../../../shared/hooks/use-rem";
-import { useTimeout } from "@rbxts/pretty-react-hooks";
 import { useMotion } from "../../../shared/hooks/use-motion";
 import { springs } from "../../../shared/constants/springs";
-import { Notifications } from "shared/types/Notification";
-import { store } from "../store";
+import { Notification } from "../store/notification/notification-slice";
 
 interface NotificationProps {
-	notification: Notifications;
-	id: number;
+	notification: Notification;
 }
 
-export function Notification({ notification, id }: NotificationProps) {
+export function Notification({ notification }: NotificationProps) {
 	const rem = useRem();
-	const ref = useRef();
 	const original = UDim2.fromScale(0.073, 0.869);
 	const [notifOffset, notifMotion] = useMotion(original);
 	const [transparency, transparencyMotion] = useMotion(0);
 
-	useTimeout(() => {
+	useEffect(() => {
+		print("visible: " + notification?.visible);
 		notifMotion.spring(UDim2.fromScale(1.5, original.Y.Scale), springs.responsive);
-		transparencyMotion.tween(1, { time: 0.5 });
-	}, 2.5);
-
-	useTimeout(() => {
-		store.removeNotification(id);
-	}, 3);
+		transparencyMotion.spring(notification?.visible ? 0 : 1, springs.gentle);
+	}, [notification?.visible]);
 
 	return (
 		<Frame
@@ -36,7 +29,6 @@ export function Notification({ notification, id }: NotificationProps) {
 			position={notifOffset.getValue()}
 			backgroundTransparency={0.5 * (transparency.getValue() + 1)}
 			backgroundColor={Color3.fromRGB(64, 64, 64)}
-			ref={ref}
 		>
 			<uicorner CornerRadius={new UDim(0.25, 0)}></uicorner>
 			<Text
@@ -45,9 +37,9 @@ export function Notification({ notification, id }: NotificationProps) {
 				font={fonts.inter.regular}
 				richText={true}
 				size={new UDim2(1, 0, 1, 0)}
-				text={notification}
+				text={notification.message}
 				textColor={Color3.fromRGB(218, 218, 218)}
-				textSize={rem(1)}
+				textSize={rem(2)}
 				textWrapped={true}
 			></Text>
 		</Frame>

@@ -1,5 +1,6 @@
 import { createProducer } from "@rbxts/reflex";
 import { Notifications } from "shared/types/Notification";
+import { mapProperty } from "shared/utils/object-utils";
 
 export interface NotificationState {
 	readonly notifications: readonly Notification[];
@@ -8,6 +9,7 @@ export interface NotificationState {
 export interface Notification {
 	readonly id: number;
 	readonly message: Notifications;
+	readonly visible: boolean;
 	readonly sound?: string;
 }
 
@@ -23,5 +25,11 @@ export const notificationSlice = createProducer(initalState, {
 	removeNotification: (state, id: number) => ({
 		...state,
 		notifications: state.notifications.filter((value) => value.id !== id),
+	}),
+	setNotificationVisible: (state, id: number, visible: boolean) => ({
+		...state,
+		notifications: state.notifications.map((notification) =>
+			notification.id === id ? { ...notification, visible } : notification,
+		),
 	}),
 });

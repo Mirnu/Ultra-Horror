@@ -13,8 +13,14 @@ export const Notifications = () => {
 	const notifications = useSelector(selectNotifications);
 
 	useEventListener(Events.Notify, (notification) => {
-		store.addNotification({ id: id, message: notification });
-		id++;
+		store.addNotification({ id: id, message: notification, visible: true });
+		const temp = id;
+		task.delay(2.5, () => {
+			store.removeNotification(temp);
+			task.wait(0.3);
+			store.setNotificationVisible(temp, false);
+		});
+		id += 1;
 	});
 
 	return (
@@ -22,7 +28,7 @@ export const Notifications = () => {
 			{notifications
 				.filter((_, index) => index < 4)
 				.map((value) => (
-					<Notification notification={value.message} id={value.id} />
+					<Notification notification={value} />
 				))}
 			<uilistlayout HorizontalAlignment={"Center"} VerticalAlignment={"Bottom"} Padding={new UDim(0.02, 0)} />
 		</Frame>
