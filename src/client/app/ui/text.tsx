@@ -1,8 +1,8 @@
 import Roact from "@rbxts/roact";
 
 import { FrameProps } from "./frame";
-import { useRem } from "../../hooks/use-rem";
-import { fonts } from "../../constants/font";
+import { useRem } from "../shared/hooks/use-rem";
+import { fonts } from "../shared/constants/font";
 
 export interface TextProps<T extends Instance = TextLabel> extends FrameProps<T> {
 	font?: Font;

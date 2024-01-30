@@ -1,12 +1,14 @@
 import { Components } from "@flamework/components";
 import { OnStart, Controller, OnTick } from "@flamework/core";
 import { Constructor } from "@flamework/core/out/utility";
+import { Workspace } from "@rbxts/services";
+import { Zone } from "@rbxts/zone-plus";
 import { State } from "client/StateMachine/State";
 import { DashState } from "client/classes/character/DashState";
 import { RunningState } from "client/classes/character/RunningState";
 import { WalkingState } from "client/classes/character/WalkingState";
 import { LocalPlayer } from "client/utils";
-import { GetCharacter } from "shared/Utils";
+import { GetCharacter } from "shared/utils/CharacterUtils";
 import { CharacterState } from "shared/types/CharacterState";
 
 const states = {

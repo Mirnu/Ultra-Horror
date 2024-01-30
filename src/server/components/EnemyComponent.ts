@@ -1,12 +1,13 @@
 import { OnStart } from "@flamework/core";
 import { Component, BaseComponent } from "@flamework/components";
 import { PathfindingService, Players, TweenService } from "@rbxts/services";
-import { GetCharacter, GetCharacterCFrame } from "shared/Utils";
+import { GetCharacter, GetCharacterCFrame } from "shared/utils/CharacterUtils";
 import { PlayerService } from "server/services/PlayerService";
 
 const distanceKill = 10;
 
 interface Attributes {}
+
 @Component({
 	tag: "Enemy",
 })

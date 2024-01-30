@@ -1,7 +1,7 @@
 import { UserInputService } from "@rbxts/services";
 import { State } from "client/StateMachine/State";
 import { LocalPlayer } from "client/utils";
-import { GetCharacter } from "shared/Utils";
+import { GetCharacter } from "shared/utils/CharacterUtils";
 
 const maxFatigue = 5;
 

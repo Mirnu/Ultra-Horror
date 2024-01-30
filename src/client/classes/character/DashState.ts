@@ -1,7 +1,7 @@
 import { ReplicatedStorage, TweenService } from "@rbxts/services";
 import { State } from "client/StateMachine/State";
 import { LocalPlayer } from "client/utils";
-import { GetCharacter } from "shared/Utils";
+import { GetCharacter } from "shared/utils/CharacterUtils";
 
 const dashTSInfo = new TweenInfo(0.5, Enum.EasingStyle.Linear, Enum.EasingDirection.Out);
 const coolDown = 5;

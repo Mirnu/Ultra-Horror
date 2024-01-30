@@ -13,7 +13,8 @@
 	"plugins": [
 		"@typescript-eslint",
 		"roblox-ts",
-		"prettier"
+		"prettier",
+		"react-hooks"
 	],
 	"extends": [
 		"eslint:recommended",
@@ -22,6 +23,8 @@
 		"plugin:prettier/recommended"
 	],
 	"rules": {
-		"prettier/prettier": "warn"
+		"prettier/prettier": "warn",
+		"react-hooks/rules-of-hooks": "error", 
+    	"react-hooks/exhaustive-deps": "warn"
 	}
 }

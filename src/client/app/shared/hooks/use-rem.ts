@@ -1,5 +1,4 @@
 import { useCallback, useContext } from "@rbxts/roact";
-
 import { DEFAULT_REM, RemContext } from "../providers/rem-provider";
 
 export interface RemOptions {

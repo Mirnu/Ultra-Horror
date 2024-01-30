@@ -1,8 +1,11 @@
 import { Networking } from "@flamework/networking";
+import { Notifications } from "./types/Notification";
 
 interface ClientToServerEvents {}
 
-interface ServerToClientEvents {}
+interface ServerToClientEvents {
+	Notify(notification: Notifications): void;
+}
 
 interface ClientToServerFunctions {}
 
