@@ -1,4 +1,7 @@
-import { ReplicatedStorage, Workspace } from "@rbxts/services";
+import { ReplicatedStorage, RunService, Workspace } from "@rbxts/services";
+
+const minIntensity = 0.3;
+const maxIntensity = 0.8;
 
 export class BackRooms {
 	public Init() {
@@ -71,6 +74,15 @@ export class BackRooms {
 		light.Face = Enum.NormalId.Bottom;
 		light.Parent = part;
 		part.Parent = Workspace;
+
+		task.delay(math.random(1, 5), () => {
+			RunService.Heartbeat.Connect(() => {
+				const flickerIntensity = math.random(minIntensity * 100, maxIntensity * 100) / 100;
+				part.Color = new Color3(flickerIntensity, flickerIntensity, flickerIntensity);
+				light.Brightness = flickerIntensity;
+				light.Brightness = flickerIntensity;
+			});
+		});
 	}
 
 	private textureWall(wall: Part) {
