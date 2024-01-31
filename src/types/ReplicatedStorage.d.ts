@@ -14,6 +14,7 @@ interface ReplicatedStorage extends Instance {
 		};
 
 		Sound: Folder & {
+			Radio: Folder;
 			light: Sound;
 		};
 	};

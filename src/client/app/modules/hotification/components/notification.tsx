@@ -6,6 +6,8 @@ import { useRem } from "../../../shared/hooks/use-rem";
 import { useMotion } from "../../../shared/hooks/use-motion";
 import { springs } from "../../../shared/constants/springs";
 import { Notification } from "../store/notification/notification-slice";
+import { Button } from "client/app/ui/button";
+import { store } from "../store";
 
 interface NotificationProps {
 	notification: Notification;
@@ -18,10 +20,13 @@ export function Notification({ notification }: NotificationProps) {
 	const [transparency, transparencyMotion] = useMotion(0);
 
 	useEffect(() => {
-		print("visible: " + notification?.visible);
 		notifMotion.spring(UDim2.fromScale(1.5, original.Y.Scale), springs.responsive);
 		transparencyMotion.spring(notification?.visible ? 0 : 1, springs.gentle);
 	}, [notification?.visible]);
+
+	const onClick = () => {
+		store.removeNotification(notification.id);
+	};
 
 	return (
 		<Frame
@@ -41,7 +46,8 @@ export function Notification({ notification }: NotificationProps) {
 				textColor={Color3.fromRGB(218, 218, 218)}
 				textSize={rem(2)}
 				textWrapped={true}
-			></Text>
+			/>
+			<Button size={UDim2.fromScale(1, 1)} onClick={onClick} backgroundTransparency={1} />
 		</Frame>
 	);
 }
