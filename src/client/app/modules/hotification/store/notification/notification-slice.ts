@@ -8,7 +8,8 @@ export interface NotificationState {
 
 export interface Notification {
 	readonly id: number;
-	readonly message: Notifications;
+	readonly message: keyof typeof Notifications;
+	readonly color: Color3;
 	readonly visible: boolean;
 	readonly sound?: string;
 }

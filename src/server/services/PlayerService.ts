@@ -16,10 +16,10 @@ export class PlayerService implements OnStart {
 		new Enemies().Init();
 
 		this.SafeZone.playerEntered.Connect((player) => {
-			Events.Notify.fire(player, Notifications.PlayerZoneEntered);
+			Events.Notify.fire(player, "PlayerZoneEntered");
 		});
 		this.SafeZone.playerExited.Connect((player) => {
-			Events.Notify.fire(player, Notifications.PlayerZoneExitied);
+			Events.Notify.fire(player, "PlayerZoneExitied");
 		});
 	}
 }

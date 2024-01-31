@@ -16,7 +16,7 @@ export class EnemyComponent<I extends Enemy> extends BaseComponent<Attributes, I
 		super();
 	}
 
-	public Speed = 200;
+	public Speed = 100;
 
 	onStart(): void {
 		this.Start();

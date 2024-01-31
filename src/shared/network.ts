@@ -4,7 +4,7 @@ import { Notifications } from "./types/Notification";
 interface ClientToServerEvents {}
 
 interface ServerToClientEvents {
-	Notify(notification: Notifications): void;
+	Notify(notification: keyof typeof Notifications): void;
 }
 
 interface ClientToServerFunctions {}

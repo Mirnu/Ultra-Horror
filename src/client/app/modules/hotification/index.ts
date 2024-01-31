@@ -1,2 +1,3 @@
-import { Notifications } from "./components/notifications";
-export { Notifications };
+import { NotificationContainer } from "./components/notifications";
+
+export { NotificationContainer };

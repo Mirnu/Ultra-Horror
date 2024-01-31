@@ -12,7 +12,7 @@ export function Radio() {
 
 	const onLeftClick = () => {
 		const id = sounds.indexOf(sound);
-		setSound(sounds[id - 1] ? sounds[id - 1] : sounds[sounds.size()]);
+		setSound(sounds[id - 1] ? sounds[id - 1] : sounds[sounds.size() - 1]);
 	};
 
 	const onRightClick = () => {

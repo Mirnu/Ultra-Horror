@@ -6,14 +6,20 @@ import { selectNotifications } from "../store/notification/notification-selector
 import { useEventListener } from "@rbxts/pretty-react-hooks";
 import { Events } from "client/network";
 import { store } from "../store";
+import { Notifications } from "shared/types/Notification";
 
 let id = 0;
 
-export const Notifications = () => {
+export const NotificationContainer = () => {
 	const notifications = useSelector(selectNotifications);
 
 	useEventListener(Events.Notify, (notification) => {
-		store.addNotification({ id: id, message: notification, visible: true });
+		store.addNotification({
+			id: id,
+			message: notification,
+			visible: true,
+			color: Notifications[notification].color,
+		});
 		const temp = id;
 		task.delay(2.5, () => {
 			store.removeNotification(temp);

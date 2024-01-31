@@ -43,7 +43,7 @@ export function Notification({ notification }: NotificationProps) {
 				richText={true}
 				size={new UDim2(1, 0, 1, 0)}
 				text={notification.message}
-				textColor={Color3.fromRGB(218, 218, 218)}
+				textColor={notification.color}
 				textSize={rem(2)}
 				textWrapped={true}
 			/>
