@@ -11,6 +11,7 @@ export interface Notification {
 	readonly message: keyof typeof Notifications;
 	readonly color: Color3;
 	readonly visible: boolean;
+	readonly duration?: number;
 	readonly sound?: string;
 }
 

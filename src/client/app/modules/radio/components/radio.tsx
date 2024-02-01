@@ -43,8 +43,18 @@ export function Radio() {
 				textSize={14}
 				textWrapped={true}
 			/>
-			<Arrow position={UDim2.fromScale(-0.454, -0.008)} size={UDim2.fromScale(0.389, 1)} onClick={onLeftClick} />
-			<Arrow position={UDim2.fromScale(1.089, -0.008)} size={UDim2.fromScale(0.389, 1)} onClick={onRightClick} />
+			<Arrow
+				position={UDim2.fromScale(-0.454, -0.008)}
+				size={UDim2.fromScale(0.389, 1)}
+				onClick={onLeftClick}
+				rotation={-90}
+			/>
+			<Arrow
+				position={UDim2.fromScale(1.089, -0.008)}
+				size={UDim2.fromScale(0.389, 1)}
+				onClick={onRightClick}
+				rotation={90}
+			/>
 		</Frame>
 	);
 }

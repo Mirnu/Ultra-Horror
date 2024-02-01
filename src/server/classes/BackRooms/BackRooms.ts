@@ -1,7 +1,13 @@
 import { ReplicatedStorage, RunService, Workspace } from "@rbxts/services";
 
-const minIntensity = 0.3;
+const minIntensity = 0.65;
 const maxIntensity = 0.8;
+
+interface light extends Part {
+	SpotLight: SpotLight;
+}
+
+const lights: light[] = [];
 
 export class BackRooms {
 	public Init() {
@@ -23,6 +29,14 @@ export class BackRooms {
 				}
 			});
 		}
+		RunService.Heartbeat.Connect(() => {
+			lights.forEach((part) => {
+				const flickerIntensity = math.random(minIntensity * 100, maxIntensity * 100) / 100;
+				part.Color = new Color3(flickerIntensity, flickerIntensity, flickerIntensity);
+				part.SpotLight.Brightness = flickerIntensity;
+				part.SpotLight.Brightness = flickerIntensity;
+			});
+		});
 	}
 
 	private createCeiling() {
@@ -55,7 +69,7 @@ export class BackRooms {
 	}
 
 	private createLight(x: number, y: number) {
-		const part = new Instance("Part");
+		const part = new Instance("Part") as light;
 		part.Anchored = true;
 		part.Material = Enum.Material.Neon;
 		part.Color = new Color3(1, 1, 1);
@@ -74,15 +88,7 @@ export class BackRooms {
 		light.Face = Enum.NormalId.Bottom;
 		light.Parent = part;
 		part.Parent = Workspace;
-
-		task.delay(math.random(1, 5), () => {
-			RunService.Heartbeat.Connect(() => {
-				const flickerIntensity = math.random(minIntensity * 100, maxIntensity * 100) / 100;
-				part.Color = new Color3(flickerIntensity, flickerIntensity, flickerIntensity);
-				light.Brightness = flickerIntensity;
-				light.Brightness = flickerIntensity;
-			});
-		});
+		lights.push(part);
 	}
 
 	private textureWall(wall: Part) {

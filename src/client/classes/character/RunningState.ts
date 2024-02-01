@@ -2,6 +2,7 @@ import { UserInputService } from "@rbxts/services";
 import { State } from "client/StateMachine/State";
 import { LocalPlayer } from "client/utils";
 import { GetCharacter } from "shared/utils/CharacterUtils";
+import { addNotification } from "../notifications/NotificationFactory";
 
 const maxFatigue = 5;
 
@@ -43,6 +44,9 @@ export class RunningState extends State {
 
 	public Update(dt: number): void {
 		this.fatigue -= dt;
-		if (this.fatigue <= 0) this.playerController.ChangeState(this.playerController.WalkingState);
+		if (this.fatigue <= 0) {
+			addNotification("PlayerTiredRunning");
+			this.playerController.ChangeState(this.playerController.WalkingState);
+		}
 	}
 }

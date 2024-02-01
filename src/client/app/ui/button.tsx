@@ -3,11 +3,12 @@ import { FrameProps } from "./frame";
 
 export interface ButtonProps extends FrameProps<TextButton> {
 	active?: boolean | Roact.Binding<boolean>;
-	onClick: () => void;
+	onClick?: () => void;
 	onMouseDown?: () => void;
 	onMouseUp?: () => void;
 	onMouseEnter?: () => void;
 	onMouseLeave?: () => void;
+	modal?: boolean;
 }
 
 export function Button(props: ButtonProps) {
@@ -38,6 +39,7 @@ export function Button(props: ButtonProps) {
 			LayoutOrder={props.layoutOrder}
 			BorderSizePixel={0}
 			Event={event}
+			Modal={props.modal}
 			Change={props.change || {}}
 		>
 			{props.cornerRadius && <uicorner key="corner" CornerRadius={props.cornerRadius} />}

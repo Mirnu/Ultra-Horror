@@ -2,14 +2,15 @@ import { ReplicatedStorage, TweenService } from "@rbxts/services";
 import { State } from "client/StateMachine/State";
 import { LocalPlayer } from "client/utils";
 import { GetCharacter } from "shared/utils/CharacterUtils";
+import { addNotification } from "../notifications/NotificationFactory";
 
 const dashTSInfo = new TweenInfo(0.5, Enum.EasingStyle.Linear, Enum.EasingDirection.Out);
 const coolDown = 5;
 
 export class DashState extends State {
 	private character = this.playerController.Character;
-	private humanoid = this.character.Humanoid;
-	private humanoidRootPart = this.character.HumanoidRootPart;
+	private humanoid = this.character.WaitForChild("Humanoid") as Humanoid;
+	private humanoidRootPart = this.character.WaitForChild("HumanoidRootPart") as BasePart;
 	private animator = this.humanoid.WaitForChild("Animator") as Animator;
 	private isCoolDown = false;
 
@@ -31,6 +32,7 @@ export class DashState extends State {
 		this.maid.GiveTask(
 			ts.Completed.Connect(() => {
 				if (this.playerController.LastState) {
+					addNotification("PlayerTiredDash");
 					const stateChanged = this.playerController.ChangeState(this.playerController.LastState);
 					if (!stateChanged) this.playerController.ChangeState(this.playerController.WalkingState);
 				}
