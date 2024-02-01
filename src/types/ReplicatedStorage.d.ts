@@ -6,6 +6,10 @@ interface ReplicatedStorage extends Instance {
 			};
 		};
 
+		Meshes: Folder & {
+			Gem: MeshPart;
+		};
+
 		Enemies: Folder & {
 			Freddy: Enemy;
 			Chipi: Folder & {

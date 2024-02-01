@@ -29,6 +29,7 @@ export class BackRooms {
 				}
 			});
 		}
+
 		RunService.Heartbeat.Connect(() => {
 			lights.forEach((part) => {
 				const flickerIntensity = math.random(minIntensity * 100, maxIntensity * 100) / 100;

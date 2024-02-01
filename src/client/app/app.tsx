@@ -5,7 +5,7 @@ import { store } from "./modules/hotification/store";
 import { RemProvider } from "./shared/providers/rem-provider";
 import { Radio } from "./modules/radio";
 import { NotificationContainer } from "./modules/hotification";
-import { Modal } from "./modules/base-settings";
+import { ButtonsSettings, Modal } from "./modules/base-settings";
 
 export function App() {
 	return (
@@ -19,6 +19,7 @@ export function App() {
 				</Layer>
 				<Layer>
 					<Modal />
+					<ButtonsSettings />
 				</Layer>
 			</RemProvider>
 		</ReflexProvider>
