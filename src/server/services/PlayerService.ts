@@ -70,6 +70,7 @@ export class PlayerService implements OnStart {
 
 		this.profiles.set(player, profile);
 		store.setPlayerSave(player.Name, profile.Data);
+		this.createLeaderstats(player, profile.Data);
 
 		const unsubscribe = store.subscribe(selectPlayerSave(player.Name), (save) => {
 			if (save) profile.Data = save;
@@ -77,6 +78,23 @@ export class PlayerService implements OnStart {
 
 		Players.PlayerRemoving.Connect((_player) => {
 			if (player === _player) unsubscribe;
+		});
+	}
+
+	private createLeaderstats(player: Player, data: PlayerSave) {
+		const leaderstats = new Instance("Folder", player);
+		leaderstats.Name = "leaderstats";
+
+		const gems = new Instance("NumberValue");
+		gems.Value = data.gems;
+		gems.Name = "Gems";
+		gems.Parent = leaderstats;
+
+		const unsubscribe = store.subscribe(selectPlayerSave(player.Name), (save) => {
+			gems.Value = save?.gems ?? 0;
+		});
+		Players.PlayerRemoving.Connect((player) => {
+			if (player === player) unsubscribe();
 		});
 	}
 
