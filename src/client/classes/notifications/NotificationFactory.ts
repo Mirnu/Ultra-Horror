@@ -1,6 +1,6 @@
 import Maid from "@rbxts/maid";
 import { store } from "client/app/modules/hotification";
-import { selectNotifications } from "client/app/modules/hotification/store/notification/notification-selectors";
+import { selectNotifications } from "client/store/notification/notification-selectors";
 import { Events } from "client/network";
 import { LocalPlayer } from "client/utils";
 import { Notifications } from "shared/types/Notification";

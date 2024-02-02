@@ -2,7 +2,7 @@ import { Frame } from "../../../ui/frame";
 import Roact from "@rbxts/roact";
 import { Notification } from "./notification";
 import { useSelector } from "@rbxts/react-reflex";
-import { selectNotifications } from "../store/notification/notification-selectors";
+import { selectNotifications } from "client/store/notification/notification-selectors";
 
 export const NotificationContainer = () => {
 	const notifications = useSelector(selectNotifications);

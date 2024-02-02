@@ -10,6 +10,8 @@ import { WalkingState } from "client/classes/character/WalkingState";
 import { LocalPlayer } from "client/utils";
 import { GetCharacter } from "shared/utils/CharacterUtils";
 import { CharacterState } from "shared/types/CharacterState";
+import Roact from "@rbxts/roact";
+import { App } from "client/app/app";
 
 const states = {
 	[CharacterState.dash]: DashState,

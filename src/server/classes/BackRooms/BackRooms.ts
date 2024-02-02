@@ -45,6 +45,7 @@ export class BackRooms {
 		ceil.Anchored = true;
 		ceil.Size = new Vector3(1000, 1, 1000);
 		ceil.CFrame = new CFrame(0, 15.5, 0);
+		ceil.CanTouch = false;
 
 		const texture = new Instance("Texture");
 		texture.StudsPerTileU = 10;
@@ -58,6 +59,7 @@ export class BackRooms {
 	private createWall(x: number, y: number) {
 		const part = new Instance("Part");
 		part.Anchored = true;
+		part.CanTouch = false;
 
 		if (math.random(1, 2) === 2) {
 			part.Size = new Vector3(math.random(5, 20), 15, 1);

@@ -1,10 +1,14 @@
 import { Networking } from "@flamework/networking";
 import { Notifications } from "./types/Notification";
+import { BroadcastAction } from "@rbxts/reflex";
 
-interface ClientToServerEvents {}
+interface ClientToServerEvents {
+	requestState(): void;
+}
 
 interface ServerToClientEvents {
 	Notify(notification: keyof typeof Notifications): void;
+	broadcast(actions: BroadcastAction[]): void;
 }
 
 interface ClientToServerFunctions {}

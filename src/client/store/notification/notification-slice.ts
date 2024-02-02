@@ -1,6 +1,5 @@
 import { createProducer } from "@rbxts/reflex";
 import { Notifications } from "shared/types/Notification";
-import { mapProperty } from "shared/utils/object-utils";
 
 export interface NotificationState {
 	readonly notifications: readonly Notification[];

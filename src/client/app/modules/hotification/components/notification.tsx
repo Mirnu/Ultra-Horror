@@ -5,9 +5,9 @@ import { fonts } from "../../../shared/constants/font";
 import { useRem } from "../../../shared/hooks/use-rem";
 import { useMotion } from "../../../shared/hooks/use-motion";
 import { springs } from "../../../shared/constants/springs";
-import { Notification } from "../store/notification/notification-slice";
+import { Notification } from "../../../../store/notification/notification-slice";
 import { Button } from "client/app/ui/button";
-import { store } from "../store";
+import { store } from "client/store";
 
 interface NotificationProps {
 	notification: Notification;

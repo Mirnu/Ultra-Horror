@@ -1,6 +1,7 @@
 import { OnStart } from "@flamework/core";
 import { Component, BaseComponent } from "@flamework/components";
 import { Players, TweenService } from "@rbxts/services";
+import { store } from "server/store";
 
 interface Attributes {}
 
@@ -21,12 +22,13 @@ export class GemComponent extends BaseComponent<Attributes, MeshPart> implements
 	}
 
 	private touchHandle() {
-		this.instance.Touched.Connect((other) => {
+		const connect = this.instance.Touched.Connect((other) => {
 			const model = other.FindFirstAncestorOfClass("Model");
 			if (!model) return;
 			const player = Players.GetPlayerFromCharacter(model);
 			if (!player) return;
-			print("PlayerTouched");
+			connect.Disconnect();
+			store.givePlayerGems(player.Name, 1);
 			this.instance.Destroy();
 		});
 	}
