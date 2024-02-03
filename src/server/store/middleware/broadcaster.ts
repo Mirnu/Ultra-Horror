@@ -6,7 +6,6 @@ export function broadcastMiddleware(): ProducerMiddleware {
 	const broadcaster = createBroadcaster({
 		producers: slices,
 		dispatch: (player, actions) => {
-			print("dispatched");
 			Events.broadcast.fire(player, actions);
 		},
 	});

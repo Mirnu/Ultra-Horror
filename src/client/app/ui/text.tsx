@@ -45,7 +45,7 @@ export function Text(props: TextProps) {
 			Position={props.position}
 			AnchorPoint={props.anchorPoint}
 			BackgroundColor3={props.backgroundColor}
-			BackgroundTransparency={props.backgroundTransparency ?? 1}
+			BackgroundTransparency={props.backgroundTransparency}
 			ClipsDescendants={props.clipsDescendants}
 			Visible={props.visible}
 			ZIndex={props.zIndex}

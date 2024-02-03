@@ -5,7 +5,6 @@ import { broadcastMiddleware } from "./middleware/broadcaster";
 export type RootState = InferState<typeof store>;
 
 export function createStore() {
-	print("storeCreated");
 	const store = combineProducers({
 		...slices,
 	});

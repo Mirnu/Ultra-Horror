@@ -23,6 +23,7 @@ export function Radio() {
 	useEffect(() => {
 		prevSound?.Stop();
 		sound.Play();
+		sound.Volume += 0.001;
 	}, [sound]);
 
 	return (

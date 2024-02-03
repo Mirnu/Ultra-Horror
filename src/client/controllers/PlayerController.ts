@@ -10,8 +10,7 @@ import { WalkingState } from "client/classes/character/WalkingState";
 import { LocalPlayer } from "client/utils";
 import { GetCharacter } from "shared/utils/CharacterUtils";
 import { CharacterState } from "shared/types/CharacterState";
-import Roact from "@rbxts/roact";
-import { App } from "client/app/app";
+import { BackRooms } from "client/classes/back-rooms/BackRooms";
 
 const states = {
 	[CharacterState.dash]: DashState,
@@ -22,6 +21,8 @@ const states = {
 
 @Controller({})
 export class PlayerController implements OnStart, OnTick {
+	constructor (private components: Components) {}
+
 	public Character!: Character;
 	public DashState!: DashState;
 	public RunningState!: RunningState
@@ -30,8 +31,12 @@ export class PlayerController implements OnStart, OnTick {
 	public CurrentState?: State;
 	public LastState?: State
 
+	public BackRooms!: BackRooms
+
 	onStart() {
 		this.Character = GetCharacter(LocalPlayer)
+		this.BackRooms = new BackRooms(this.components)
+		this.BackRooms.generate()
 		
 		this.DashState = new DashState(this)
 		this.RunningState = new RunningState(this)
